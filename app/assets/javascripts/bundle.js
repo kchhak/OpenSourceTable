@@ -501,7 +501,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.submitUser(this.state).success(this.props.closeModal());
+      this.props.submitUser(this.state).then(this.props.closeModal);
     }
   }, {
     key: "loginGuest",
@@ -513,11 +513,22 @@ function (_React$Component) {
       this.props.closeModal();
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "errors"
+      }, this.props.errors.session.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Please sign in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Please sign in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -659,7 +670,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.submitUser(this.state).success(this.props.closeModal());
+      this.props.submitUser(this.state).then(this.props.closeModal);
     }
   }, {
     key: "loginGuest",
@@ -679,14 +690,23 @@ function (_React$Component) {
       z;
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "errors"
+      }, this.props.errors.session.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
-      var errors = this.state.errors ? this.state.errors.map(function (error) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, error);
-      }) : "";
+      // const errors = this.props.errors ? this.props.errors.session.join('. ') : "";
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to OpensourceTable!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), errors, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to OpensourceTable!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -935,6 +955,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 var sessionErrorsReducer = function sessionErrorsReducer() {
@@ -947,6 +969,9 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      return [];
+
+    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["CLOSE_MODAL"]:
       return [];
 
     default:

@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.submitUser(this.state).success(this.props.closeModal());
+    this.props.submitUser(this.state).then(this.props.closeModal);
   }
 
   loginGuest() {
@@ -38,21 +38,27 @@ class SignupForm extends React.Component {
     this.setState({ owner: !this.state.owner});z
   }
 
+  renderErrors(){
+    return (
+        <ul className="errors">
+          {this.props.errors.session.map((error, i) => (
+            <li key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+    );
+  }
+
   render() {
-    const errors = this.state.errors ? this.state.errors.map(error => {
-      return (
-        <p>{error}</p>
-      )
-    }) : ""
+    // const errors = this.props.errors ? this.props.errors.session.join('. ') : "";
 
     return (
       <div className="session-form">
         <h2>Welcome to OpensourceTable!</h2>
         <hr/>
-        {errors}
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
-          {/* FIRST NAME
-          LAST NAME */}
           <input type="text" value={this.state.first_name} placeholder="First Name *" onChange={this.update('first_name')}/>
           <input type="text" value={this.state.last_name} placeholder="Last Name *" onChange={this.update('last_name')} />
           <input type="text" value={this.state.email} placeholder="Enter email *" onChange={this.update('email')} />

@@ -8,10 +8,14 @@
   margin-bottom: 8px;
 }
 
-
 .session-form > h2{
   font-size: 24px;
   font-weight: 500;
+}
+
+.session-form > .errors{
+  color: red;
+  margin: 5px 0;
 }
 
 .session-form > form {

@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.submitUser(this.state).success(this.props.closeModal());
+    this.props.submitUser(this.state).then(this.props.closeModal);
   }
 
   loginGuest() {
@@ -29,11 +29,24 @@ class LoginForm extends React.Component {
     this.props.closeModal();
   }
 
+  renderErrors() {
+    return (
+      <ul className="errors">
+        {this.props.errors.session.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render () {
     return (
       <div className="session-form">
         <h2>Please sign in</h2>
         <hr/>
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.email} placeholder="Email" onChange={this.update('email')}/>
           <input type="password" value={this.state.password} placeholder="Password" onChange={this.update('password')} />
