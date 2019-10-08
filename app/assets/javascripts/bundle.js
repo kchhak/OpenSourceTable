@@ -542,7 +542,7 @@ function (_React$Component) {
         onChange: this.update('password')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Don't want to complete the form?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.loginGuest
-      }, "Continue as a guest"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New to OpensourceTable? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "Continue as a Guest"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New to OpensourceTable? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: this.props.openModal
       }, "Create an account")));
     }

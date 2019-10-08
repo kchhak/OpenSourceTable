@@ -54,7 +54,7 @@ class LoginForm extends React.Component {
         </form>
         <hr/>
         <p>Don't want to complete the form?</p>
-        <button onClick={this.loginGuest}>Continue as a guest</button>
+        <button onClick={this.loginGuest}>Continue as a Guest</button>
         <p>New to OpensourceTable? <a onClick={this.props.openModal}>Create an account</a></p>
       </div>
     )
