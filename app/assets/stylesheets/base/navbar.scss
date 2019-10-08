@@ -1,0 +1,116 @@
+.navbar {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar > .logo {
+  object-fit: cover;
+  margin: 0 20px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(0, 0, 0, .12);
+  width: 200px;
+  height: 75px;
+}
+
+.navbar > .header-welcome {
+  margin: 15px 20px;
+  font-weight: 500;
+}
+
+.navbar > .header-welcome > h2 {
+  border-left: 1px solid rgba(0, 0, 0, .12);
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 0 30px;
+  font-size: 18px;
+}
+
+.navbar > .header-welcome > h2 > i {
+  padding: 3px;
+  border: solid rgba(0, 0, 0, 0.2);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin: 0 0 5px 8px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.navbar > .header-welcome > .user-nav-hidden {
+  display: none;
+}
+
+.navbar > .header-welcome > .user-nav {
+  box-sizing: content-box;
+  width: 220px;
+  position: absolute;
+  z-index: 30;
+  display: block;
+  right: 35px;
+  background: white;
+  margin: 2px;
+  padding: 4px 0;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  
+}
+
+.navbar > .header-welcome > .user-nav > .arrow-up{ 
+  z-index: 35;
+  position: absolute;
+  top: -10px;
+  right: 105px;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  
+  border-bottom: 10px solid rgba(0, 0, 0, .12);
+}
+
+.navbar > .header-welcome > .user-nav > a {
+  display: flex;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666666;
+}
+
+.navbar > .header-welcome > .user-nav > a:hover { 
+  width: 87%;
+  background: rgba(0, 0, 0, .03);
+  color: #666666;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.navbar > .header-nav {
+  margin: 15px 20px;
+}
+
+.navbar > .header-nav > button {
+  padding: 3px 20px;
+  font-size: 16px;
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.navbar > .header-nav > .sign-up {
+  background: #237B98;
+  border-radius: 3px;
+  color: white;
+}
+
+.navbar > .header-nav > .sign-up:hover{
+  background: #1c627a;
+}
+
+.navbar > .header-nav > .sign-in {
+  color: black;
+}
