@@ -5,6 +5,13 @@ export const fetchRestaurant = id => (
   })
 );
 
+export const fetchAllRestaurants = () => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/restaurants'
+  })
+)
+
 export const createRestaurant = restaurant => (
   $.ajax({
     method: 'POST',

@@ -4,7 +4,9 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def index 
-    @restaurants = Restaurant.all  ##all restaurants for now- filter later!
+    restaurants = Restaurant.all
+    
+    if params[:cuisine_type] || params[:location]
   end
 
   def create 
@@ -31,7 +33,7 @@ class Api::RestaurantsController < ApplicationController
 
   def restaurant_params 
     params.require(:restaurant)
-      .permit(:owner_id, :name, :address, :cuisine_type, :dining_style, :phone, :price, :capacity, :description,
+      .permit(:owner_id, :name, :address, :location, :cuisine_type, :dining_style, :phone, :price, :capacity, :description,
               :mon_open, :mon_close, :tues_open, :tues_close, :wed_open, :wed_close, :thurs_open, :thurs_close,
               :fri_open, :fri_close, :sat_open, :sat_close, :sun_open, :sun_close)
   end
