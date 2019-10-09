@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 1
+  name: MyString
+  address: MyString
+  cuisine_type: MyString
+  dining_style: MyString
+  phone: MyString
+  price: 1
+  capacity: 1
+  description: MyText
+  mon_open: MyString
+  mon_close: MyString
+  tues_open: MyString
+  tues_close: MyString
+  wed_open: MyString
+  wed_close: MyString
+  thurs_open: MyString
+  thurs_close: MyString
+  fri_open: MyString
+  fri_close: MyString
+  sat_open: MyString
+  sat_close: MyString
+  sun_open: MyString
+  sun_close: MyString
+
+two:
+  owner_id: 1
+  name: MyString
+  address: MyString
+  cuisine_type: MyString
+  dining_style: MyString
+  phone: MyString
+  price: 1
+  capacity: 1
+  description: MyText
+  mon_open: MyString
+  mon_close: MyString
+  tues_open: MyString
+  tues_close: MyString
+  wed_open: MyString
+  wed_close: MyString
+  thurs_open: MyString
+  thurs_close: MyString
+  fri_open: MyString
+  fri_close: MyString
+  sat_open: MyString
+  sat_close: MyString
+  sun_open: MyString
+  sun_close: MyString

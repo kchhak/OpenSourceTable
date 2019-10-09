@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :restaurants, 
+    foreign_key: "owner_id"
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)
