@@ -1,9 +1,7 @@
 import React from 'react';
-import {AuthRoute} from '../util/route_util';
 import Modal from './modal/modal';
 import NavBarContainer from './nav/nav_bar_container';
-import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import RestaurantIndexContainer from './restaurants/restaurant_index_container';
 
 const App = () => (
   <div>
@@ -11,8 +9,7 @@ const App = () => (
     <header>
       < NavBarContainer />
     </header>
-    {/* <AuthRoute path="/login" component={LoginFormContainer}/>
-    <AuthRoute path="/signup" component={SignupFormContainer}/> */}
+    <RestaurantIndexContainer/>
   </div>
 );
 

@@ -4,9 +4,7 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def index 
-    restaurants = Restaurant.all
-    
-    if params[:cuisine_type] || params[:location]
+    @restaurants = Restaurant.all
   end
 
   def create 

@@ -20,7 +20,7 @@ const receiveRestaurantErrors = (errors) => ({
   errors
 })
 
-const clearErrors = () => ({
+const clearResErrors = () => ({
   type: CLEAR_ERRORS
 });
 
@@ -45,5 +45,5 @@ export const createRestaurant = restaurant => dispatch => (
 );
 
 export const clearErrors = () => dispatch => (
-  dispatch(clearErrors())
+  dispatch(clearResErrors())
 );
