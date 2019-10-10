@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_153523) do
+ActiveRecord::Schema.define(version: 2019_10_10_201229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "lat", null: false
+    t.float "lng", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_locations_on_name"
+  end
 
   create_table "restaurants", force: :cascade do |t|
     t.integer "owner_id", null: false
@@ -23,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_153523) do
     t.string "cuisine_type", null: false
     t.string "dining_style", null: false
     t.string "phone", null: false
-    t.integer "price", null: false
+    t.string "price", null: false
     t.integer "capacity", null: false
     t.text "description", null: false
     t.time "mon_open"
@@ -43,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_153523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cuisine_type"], name: "index_restaurants_on_cuisine_type"
+    t.index ["location_id"], name: "index_restaurants_on_location_id"
     t.index ["name"], name: "index_restaurants_on_name"
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
   end
