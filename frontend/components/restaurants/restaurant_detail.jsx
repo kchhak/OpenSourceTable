@@ -10,7 +10,7 @@ class RestaurantDetail extends React.Component {
     const restaurant = this.props.restaurant;
 
     return(
-      <div className="restaurant-detail">
+      <div className="restaurant-show">
         <div className="restaurant-info">
           <span>{restaurant.cuisine_type}</span>
           <span>{restaurant.dining_style}</span>

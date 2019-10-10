@@ -4,11 +4,11 @@ import RestaurantIndex from './restaurant_index';
 
 const mapStateToProps = state => ({
   restaurants: Object.values(state.entities.restaurants)
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  requestAllRestaurants: () => dispatch(requestAllRestaurants)
-})
+  requestAllRestaurants: () => dispatch(requestAllRestaurants())
+});
 
 export default connect(
   mapStateToProps,

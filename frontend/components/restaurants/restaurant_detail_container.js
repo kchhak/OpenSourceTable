@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {requestRestaurant} from '../../actions/restaurant_actions';
-import RestaurantDetail from './restaurant_detail';
+import RestaurantIndexItem from './restaurant_detail';
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RestaurantDetail);
+)(RestaurantIndexItem);
