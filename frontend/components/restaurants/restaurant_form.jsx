@@ -226,4 +226,6 @@ class RestaurantForm extends React.Component {
       </div>
     )
   }
-}
+};
+
+export default withRouter(RestaurantForm);
