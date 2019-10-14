@@ -3,6 +3,7 @@ import React from 'react';
 
 class RestaurantDetail extends React.Component {
   componentDidMount() {
+    console.log(this.props)
     this.props.requestRestaurant(this.props.match.params.restaurantId);
   }
 

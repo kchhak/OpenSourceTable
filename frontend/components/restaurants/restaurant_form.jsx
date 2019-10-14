@@ -37,7 +37,7 @@ class RestaurantForm extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.props.createRestaurant(this.state)
-      .then(restaurant => this.props.history.push(`/pokemon/${restaurant.id}`))
+      .then(restaurant => this.props.history.push(`/restaurants/${restaurant.id}`))
   }
 
   update(field) {

@@ -15,7 +15,7 @@ export const fetchAllRestaurants = () => (
 export const createRestaurant = restaurant => (
   $.ajax({
     method: 'POST',
-    url: 'api/restaurants',
+    url: '/api/restaurants',
     data: {restaurant}
   })
 );
@@ -23,7 +23,7 @@ export const createRestaurant = restaurant => (
 export const updateRestaurant = restaurant => (
   $.ajax({
     method: 'PATCH',
-    url: `api/restaurants/${restaurant.id}`,
+    url: `/api/restaurants/${restaurant.id}`,
     data: {restaurant}
   })
 );

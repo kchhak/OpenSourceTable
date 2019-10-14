@@ -6,4 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
-User.create(first_name: 'Guest', last_name: 'User', email: 'guest@email.com', password: 'guestpass', location: 'Charlotte', owner: true)
+Location.delete_all
+Restaurant.delete_all
+
+u = User.create(first_name: 'Guest', last_name: 'User', email: 'guest@email.com', password: 'guestpass', location: 'Charlotte', owner: true)
+
+atl = Location.create(name: 'Atlanta', lat: 33.747191, lng: -84.388844)
+clt = Location.create(name: 'Charlotte', lat: 35.225156, lng: -80.845332)
+ny = Location.create(name: 'New York', lat: 40.713389, lng: -73.991915)
+sf = Location.create(name: 'San Francisco', lat: 37.772787, lng: -122.417552)
+
+Restaurant.create(owner_id: u.id, name: 'Up Dog', address: '1212 Tasty Dog Drive', cuisine_type: 'American', dining_style: 'Casual Dining', phone: '1231231234', price: '$$', capacity: 50, description: 'Up Dog: a variety of hot dogs', location_id: clt.id)
+
+
