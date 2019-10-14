@@ -526,18 +526,23 @@ function (_React$Component) {
   _createClass(RestaurantDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log(this.props);
+      debugger;
       this.props.requestRestaurant(this.props.match.params.restaurantId);
     }
   }, {
     key: "render",
     value: function render() {
       var restaurant = this.props.restaurant;
+
+      if (!restaurant) {
+        return null;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-quick-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.dining_style)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.description));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.cuisine_type, " | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.dining_style)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.description));
     }
   }]);
 
@@ -593,8 +598,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _restaurant_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./restaurant_detail */ "./frontend/components/restaurants/restaurant_detail.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _restaurant_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./restaurant_index_item */ "./frontend/components/restaurants/restaurant_index_item.js");
 /* harmony import */ var _restaurant_detail_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./restaurant_detail_container */ "./frontend/components/restaurants/restaurant_detail_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -642,11 +647,11 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, restaurants.map(function (restaurant) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_restaurant_detail__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_restaurant_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: restaurant.id,
           restaurant: restaurant
         });
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/restaurants/:restaurantId",
         component: _restaurant_detail_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }));
@@ -691,6 +696,38 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_restaurant_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/restaurants/restaurant_index_item.js":
+/*!******************************************************************!*\
+  !*** ./frontend/components/restaurants/restaurant_index_item.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var RestaurantIndexItem = function RestaurantIndexItem(_ref) {
+  var restaurant = _ref.restaurant;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "restaurant-index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/restaurants/".concat(restaurant.id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "dot"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "dot"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RestaurantIndexItem);
 
 /***/ }),
 
@@ -37584,7 +37621,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

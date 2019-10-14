@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   has_many :restaurants, 
     foreign_key: "owner_id"
+  
+  has_many :reservations,
+    foreign_key: "user_id"
 
   attr_reader :password
 
