@@ -1,6 +1,6 @@
 import React from 'react';
-import RestaurantIndexItem from './restaurant_detail';
 import { Route } from 'react-router-dom';
+import RestaurantIndexItem from './restaurant_index_item';
 import RestaurantDetailContainer from './restaurant_detail_container';
 
 class RestaurantIndex extends React.Component {
@@ -21,7 +21,7 @@ class RestaurantIndex extends React.Component {
             />
           ))}
         </ul>
-        <Route 
+        <Route
           path="/restaurants/:restaurantId"
           component={RestaurantDetailContainer}
         />

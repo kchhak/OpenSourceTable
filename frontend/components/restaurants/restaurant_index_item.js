@@ -10,7 +10,6 @@ const RestaurantIndexItem = ({ restaurant }) => (
       <span className="dot"/>
       <p>{restaurant.price}</p>
       <span className="dot" />
-      {/* <p>{restaurant.location.name}</p> */}
     </Link>
   </li>
 );
