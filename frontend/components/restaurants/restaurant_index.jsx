@@ -21,10 +21,6 @@ class RestaurantIndex extends React.Component {
             />
           ))}
         </ul>
-        <Route
-          path="/restaurants/:restaurantId"
-          component={RestaurantDetailContainer}
-        />
       </div>
     )
   }

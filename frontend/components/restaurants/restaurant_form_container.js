@@ -9,7 +9,7 @@ const mapStateToProps = ({ errors, session, entities: {users} }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createRestaurant: restaurant => dispatch(createRestaurant(restaurant)),
+  createRestaurant: restaurant => dispatch(createRestaurant(restaurant))
 });
 
 export default connect(
