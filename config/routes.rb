@@ -5,8 +5,13 @@ Rails.application.routes.draw do
     resources :users, only: [:create] do 
       resources :reservations, only: [:index]
     end
+
     resource :session, only: [:create, :destroy]
-    resources :restaurants, only: [:index, :show, :create, :update]
-    resources :reservations, only: [:show, :update, :create, :destroy]
+
+    resources :restaurants, only: [:index, :show, :create, :update] do 
+      resources :reservations, only: [:create]
+    end
+    
+    resources :reservations, only: [:show, :update, :destroy]
   end
 end
