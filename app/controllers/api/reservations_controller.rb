@@ -4,7 +4,7 @@ class Api::ReservationsController < ApplicationController
   end
 
   def index 
-    @user = User.find(params[:userId])
+    @user = User.find(params[:user_id])
 
     if @user 
       @reservations = @user.reservations
@@ -13,7 +13,8 @@ class Api::ReservationsController < ApplicationController
     end
   end
 
-  def create 
+  def create
+    params[:reservation][:res_time] = DateTime.strptime(params[:reservation][:res_time], '%Y-%m-%d %I:%M %p')
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save 
@@ -24,7 +25,7 @@ class Api::ReservationsController < ApplicationController
   end
 
   def update 
-    @reservation = Reservation.find(params[:userId])
+    @reservation = Reservation.find(params[:user_id])
 
     if @reservation.update(reservation_params)
       render :show

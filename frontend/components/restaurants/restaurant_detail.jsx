@@ -1,5 +1,5 @@
 import React from 'react';
-import ReservationForm from '../reservations/reservation_form';
+import ReservationFormContainer from '../reservations/reservation_form_container';
 
 class RestaurantDetail extends React.Component {
   componentDidMount() {
@@ -42,7 +42,7 @@ class RestaurantDetail extends React.Component {
           <p>{restaurant.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque.</p>
         </div>
         <div className="restaurant-side-info">
-          <ReservationForm restaurant={restaurant}/>
+          <ReservationFormContainer restaurant={restaurant}/>
           <ul>
             <li><i className="fas fa-map-marker-alt"></i> <span>{restaurant.address}</span></li>
             <li><i className="fas fa-utensils"></i> <span>{restaurant.cuisine_type}</span></li>

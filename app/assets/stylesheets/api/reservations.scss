@@ -1,0 +1,97 @@
+.reservation-form {
+  position: sticky;
+  background: white;
+  width: 90%;
+  border: 1px solid rgba(0, 0, 0, .12);
+  border-radius: 3px;
+  padding: 1rem;
+  box-shadow: 2px 2px 2px #f1f2f4;
+  margin-bottom: 20px;
+}
+
+.reservation-form > h2 {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reservation-form > form {
+  padding: 5px;
+}
+
+.reservation-form > form > label {
+  font-size: 14px;
+  font-weight: 550;
+}
+.reservation-form > form > label > .party-size {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.reservation-form > form > .date-time{
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.reservation-form > form > .date-time > .date {
+  width: 50%;
+}
+
+.reservation-form > form > .date-time > .time {
+  width: 50%;
+}
+
+.reservation-form > form > .date-time > .date > label {
+  font-size: 14px;
+  font-weight: 550;
+  margin-top: 5px;
+}
+
+.reservation-form > form > .date-time > .time > label {
+  font-size: 14px;
+  font-weight: 550;
+  margin-top: 5px;
+}
+
+.reservation-form > form > .date-time > .date > label > input {
+  width: 90%;
+  font-weight: 400;
+  border: none;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  margin: 5px 10px 5px 0;
+  cursor: pointer;
+}
+
+.reservation-form > form > .date-time > .time> label > select {
+  border: none;
+  background: white;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  margin-bottom: 5px;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+.reservation-form > form > button {
+  box-sizing: border-box;
+  margin-top: 10px;
+  width: 100%;
+  background: #DA3743;
+  padding: 10px 15px 10px;
+  border-radius: 3px;
+  border: 1px solid #b8222d;
+  font-size: 16px;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}

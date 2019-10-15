@@ -8,23 +8,40 @@ class ReservationForm extends React.Component {
       user_id: this.props.userId,
       restaurant_id: this.props.restaurant.id,
       num_guests: 1,
-      res_time: new Date()
+      res_time: null
     };
-
-    console.log(this.state);
 
     this.date = null;
     this.time = null;
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let reservation = Object.assign({}, this.state);
+    reservation.res_time = `${this.date} ${this.time}`;
+    console.log(reservation);
+    this.props.createReservation(reservation)
+      .then(reservation => this.props.history.push(`/reservations/${reservation.id}`))
   }
 
   update(field) {
     return e => this.setState({ [field]: e.target.value })
   }
 
-  updateSearch(field){
+  updateDate() {
+    return e => {
+      this.date = e.target.value;
+      console.log(this.date);
+    } 
+  }
 
+  updateTime() {
+    return e => {
+      this.time = e.target.value;
+      console.log(this.time);
+    } 
   }
 
   partySizeDropdown() {
@@ -41,12 +58,45 @@ class ReservationForm extends React.Component {
     ));
   }
 
+  timeDropdown() {
+    let times = ['12:00 AM', '12:30 AM'];
+
+    for (let i = 1; i <= 11; i++) {
+      if (i < 10){
+        times.push(`0${i}:00 AM`);
+        times.push(`0${i}:30 AM`);
+      } else {
+        times.push(`${i}:00 AM`);
+        times.push(`${i}:30 AM`);
+      }
+    }
+
+    times.push('12:00 PM');
+    times.push('12:30 PM');
+
+    for (let i = 1; i <= 11; i++) {
+      if (i < 10) {
+        times.push(`0${i}:00 PM`);
+        times.push(`0${i}:30 PM`);
+      } else {
+        times.push(`${i}:00 PM`);
+        times.push(`${i}:30 PM`);
+      }
+    }
+
+    return times.map(time => (
+      <option key={time} value={time}>
+        {time}
+      </option>
+    ))
+  }
 
   render() {
     return (
       <div className="reservation-form">
         <h2>Make a reservation</h2>
         <hr />
+
         <form onSubmit={this.handleSubmit}>
           <label>Party Size
             <select className="party-size" onChange={this.update('num_guests')}>
@@ -55,12 +105,25 @@ class ReservationForm extends React.Component {
               {this.partySizeDropdown()}
             </select>
           </label>
-          <label>Date
-            <input type="date" onChange={this.updateSearch('date')}/>
-          </label>
-          <label>Time
-            <input type="time" onChange={this.updateSearch('time')}/>
-          </label>
+
+          <div className="date-time">
+            <div className="date">
+              <label>Date
+                <br/>
+                <input type="date" onChange={this.updateDate()}/>
+              </label>
+            </div>
+
+            <div className="time">
+              <label>Time
+                <br />
+                <select onChange={this.updateTime()}>
+                  {this.timeDropdown()}
+                </select>
+              </label>
+            </div>
+          </div>
+
           <button className="find-table">Find a Table</button>
         </form>
       </div>

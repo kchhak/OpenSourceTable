@@ -1,12 +1,14 @@
 .restaurant-detail {
   font-family: Arial, Helvetica, sans-serif;
   width: 90%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
 }
 
 .restaurant-detail > .restaurant-main-info {
   border: 1px solid rgba(0, 0, 0, .12);
+  background: white;
   border-radius: 3px;
   padding: 2rem 1rem 1rem;
   box-shadow: 1px 1px 1px #f1f2f4;
@@ -36,10 +38,7 @@
   font-size: 14px;
   margin-top: 20px;
   padding-left: 1rem;
-  // border: 1px solid rgba(0, 0, 0, .12);
-  // border-radius: 3px;
-  // padding: 1rem;
-  // box-shadow: 1px 1px 1px #f1f2f4;
+  padding-right: 1rem;
 }
 
 .restaurant-detail > .restaurant-side-info > ul > li {

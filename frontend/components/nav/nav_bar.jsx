@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 
 const NavBar = ({ currentUser, logout, openModal }) => {
@@ -6,21 +7,18 @@ const NavBar = ({ currentUser, logout, openModal }) => {
 
   return(
     <div className="navbar">
-      <img className="logo" src={window.logoURL}/>
+      <Link to="/"><img className="logo" src={window.logoURL} /></Link>
       {currentUser ? (
         
         <div className="header-welcome">
           <h2 onClick={() => {toggleVisible(!isVisible)}}>
             Hi, {currentUser.first_name} <i></i>
           </h2>
-          {/* OTHER NAV LINKS: my profile,
-          my dining history,
-          my saved restaurants */}
           <div className={`user-nav${isVisible ? "" : "-hidden"}`}> 
             <div className="arrow-up"></div>
-            <a href="#">My Profile</a>
+            <Link to={`/users/${currentUser.id}`}>My Profile</Link>
             <a href="#">My Dining History</a>
-            <a href="#">My Saved Restaurants</a>
+            <Link to={`/users/${currentUser.id}`}>My Saved Restaurants</Link>
             <a onClick={() => {logout(), toggleVisible(!isVisible)}}>Sign Out</a>
           </div>
         </div>
