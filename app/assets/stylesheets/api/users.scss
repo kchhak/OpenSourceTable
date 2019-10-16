@@ -34,12 +34,14 @@
   width: 70%;
 }
 
-.user-show > .user-info > .res-res > .upcoming-reservations {
+.user-show > .user-info > .res-res > div {
   width: 100%;
   margin-top: 30px;
+  padding-bottom: 30px;
   border-radius: 5px;
   background: white;
-  height: 300px;
+  min-height: 250px;
+  height: auto;
 }
 
 .user-show > .user-info > .res-res > .upcoming-reservations > h2 {
@@ -48,13 +50,13 @@
   border-bottom: 2px solid rgba(0,0,0,.08);
 }
 
-.user-show > .user-info > .res-res > .saved-restaurants {
-  width: 100%;
-  margin-top: 30px;
-  border-radius: 5px;
-  background: white;
-  height: 300px;
+
+.user-show > .user-info > .res-res > .past-reservations > h2 {
+  font-size: 24px;
+  padding: 1rem;
+  border-bottom: 2px solid rgba(0,0,0,.08);
 }
+
 
 .user-show > .user-info > .res-res > .saved-restaurants > h2 {
   font-size: 24px;

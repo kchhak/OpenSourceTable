@@ -613,6 +613,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -632,6 +633,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -667,8 +669,8 @@ function (_React$Component) {
       var reservation = Object.assign({}, this.state);
       reservation.res_time = "".concat(this.date, " ").concat(this.time);
       console.log(reservation);
-      this.props.createReservation(reservation).then(function (reservation) {
-        return _this2.props.history.push("/reservations/".concat(reservation.id));
+      this.props.createReservation(reservation).then(function () {
+        return _this2.props.history.push("/users/".concat(_this2.props.userId));
       });
     }
   }, {
@@ -788,7 +790,7 @@ function (_React$Component) {
   return ReservationForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ReservationForm);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ReservationForm));
 
 /***/ }),
 
@@ -1565,9 +1567,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1580,29 +1582,75 @@ var UserDisplay =
 function (_React$Component) {
   _inherits(UserDisplay, _React$Component);
 
-  function UserDisplay() {
+  function UserDisplay(props) {
+    var _this;
+
     _classCallCheck(this, UserDisplay);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(UserDisplay).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(UserDisplay).call(this, props));
+    _this.upcoming = [];
+    _this.past = [];
+    _this.sortReservations = _this.sortReservations.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(UserDisplay, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestAllReservations(this.props.currentUser.id);
+      this.sortReservations();
     }
   }, {
-    key: "renderReservations",
-    value: function renderReservations() {
+    key: "formatDate",
+    value: function formatDate(date) {
+      return "".concat(date.getUTCMonth() + 1, "/").concat(date.getUTCDate(), "/").concat(date.getUTCFullYear(), " at ").concat((date.getUTCHours() + 11) % 12 + 1, ":").concat(date.getUTCMinutes() === 0 ? "00" : "30", " ").concat(date.getUTCHours() >= 12 ? "PM" : "AM");
+    }
+  }, {
+    key: "sortReservations",
+    value: function sortReservations() {
+      var _this2 = this;
+
+      this.props.reservations.forEach(function (reservation) {
+        var d = new Date(reservation.res_time);
+
+        if (d.valueOf() < Date.now().valueOf()) {
+          _this2.past.push(reservation);
+        } else {
+          _this2.upcoming.push(reservation);
+        }
+      });
+    }
+  }, {
+    key: "renderUpcomingReservations",
+    value: function renderUpcomingReservations() {
+      var _this3 = this;
+
+      if (!this.upcoming) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " No Upcoming Reservations", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#"
+        }, "Book a Table."));
+      }
+
+      return this.upcoming.map(function (reservation) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "reservation-block",
+          key: reservation.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests));
+      });
+    }
+  }, {
+    key: "renderPastReservations",
+    value: function renderPastReservations() {
       if (!this.props.reservations) {
         return null;
       }
 
-      return this.props.reservations.map(function (reservation) {
+      return this.past.map(function (reservation) {
+        var date = new Date(reservation.res_time);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "reservation-block",
           key: reservation.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, new Date(reservation.res_time).toUTCString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Party of ", reservation.num_guests));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, date.getUTCMonth() + 1, "/", date.getUTCDate(), "/", date.getUTCFullYear(), " at ", (date.getUTCHours() + 11) % 12 + 1, ":", date.getUTCMinutes() === 0 ? "00" : "30", " ", date.getUTCHours >= 12 ? "PM" : "AM"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests));
       });
     }
   }, {
@@ -1628,7 +1676,9 @@ function (_React$Component) {
         className: "upcoming-reservations"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         id: "reservations"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Upcoming Reservations"), this.renderReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Upcoming Reservations"), this.renderUpcomingReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "past-reservations"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Past Reservations"), this.renderPastReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "saved-restaurants"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         id: "restaurants"

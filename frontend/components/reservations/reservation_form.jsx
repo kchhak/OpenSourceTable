@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ReservationForm extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class ReservationForm extends React.Component {
     reservation.res_time = `${this.date} ${this.time}`;
     console.log(reservation);
     this.props.createReservation(reservation)
-      .then(reservation => this.props.history.push(`/reservations/${reservation.id}`))
+      .then(() => this.props.history.push(`/users/${this.props.userId}`))
   }
 
   update(field) {
@@ -131,4 +132,4 @@ class ReservationForm extends React.Component {
   }
 }
 
-export default ReservationForm;
+export default withRouter(ReservationForm);
