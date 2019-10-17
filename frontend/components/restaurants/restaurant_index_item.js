@@ -8,8 +8,9 @@ const RestaurantIndexItem = ({ restaurant }) => (
       
       <div>
         <h3>{restaurant.name}</h3>
-        <p>{restaurant.cuisine_type}</p>
-        <p>{restaurant.price}</p>  
+        <p className="res-address">{restaurant.address}</p>
+        <span><i className="fas fa-money-bill"></i> {restaurant.price} </span>
+        <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
       </div>
       
     </li>

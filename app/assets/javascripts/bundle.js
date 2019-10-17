@@ -1262,7 +1262,13 @@ var RestaurantIndexItem = function RestaurantIndexItem(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "restaurant-thumb",
     src: restaurant.photoUrls[0]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price))));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "res-address"
+  }, restaurant.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-money-bill"
+  }), " ", restaurant.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-utensils"
+  }), " ", restaurant.cuisine_type))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (RestaurantIndexItem);
@@ -2251,11 +2257,21 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "reservation-block",
           key: reservation.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reservation-info"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "restaurant-thumb-small",
+          src: reservation.restaurant.photoUrls[0]
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reservation-rest"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "restaurant-name"
+        }, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "cancel-res",
           onClick: function onClick() {
             return _this3.props.cancelReservation(reservation.id).then(window.location.reload());
           }
-        }, "Cancel this reservation?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+        }, "Cancel this reservation?"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
       });
     }
   }, {
@@ -2270,7 +2286,16 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "reservation-block",
           key: reservation.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, date.getUTCMonth() + 1, "/", date.getUTCDate(), "/", date.getUTCFullYear(), " at ", (date.getUTCHours() + 11) % 12 + 1, ":", date.getUTCMinutes() === 0 ? "00" : "30", " ", date.getUTCHours >= 12 ? "PM" : "AM"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reservation-info"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "restaurant-thumb-small",
+          src: reservation.restaurant.photoUrls[0]
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reservation-rest"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "restaurant-name"
+        }, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, date.getUTCMonth() + 1, "/", date.getUTCDate(), "/", date.getUTCFullYear(), " at ", (date.getUTCHours() + 11) % 12 + 1, ":", date.getUTCMinutes() === 0 ? "00" : "30", " ", date.getUTCHours >= 12 ? "PM" : "AM"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           restaurant_id: reservation.restaurant_id
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
       });

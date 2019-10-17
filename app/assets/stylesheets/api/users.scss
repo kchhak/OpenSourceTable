@@ -64,8 +64,19 @@
   border-bottom: 2px solid rgba(0,0,0,.08);
 }
 
-.reservation-block{
+ul.reservation-block{
   margin: 2rem;
+}
+
+
+button.cancel-res{
+  margin-top: 20px;
+  font-size: 14px;
+  color: #DA3437 
+}
+
+button.cancel-res:hover{
+  text-decoration: underline;
 }
 
 div.no-upcoming{
@@ -86,3 +97,16 @@ div.no-upcoming > a:hover {
   font-weight: 550;
   text-decoration: underline;
 }
+
+div.reservation-info{
+  display: flex;
+  margin-bottom: 25px;
+}
+
+li.restaurant-name{
+  font-weight: 550;
+  font-size: 16px;
+  display: block;
+}
+
+

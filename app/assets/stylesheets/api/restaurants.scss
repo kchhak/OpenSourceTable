@@ -17,11 +17,25 @@ img.restaurant-thumb {
   border-radius: 5px;
 }
 
+img.restaurant-thumb-small{
+  margin-right: 50px;
+  border-radius: 5px;
+  height: 100px;
+  width: 100px;
+}
+
 .restaurant-index-item > div > h3 {
   font-size: 24px;
   font-weight: 600;
   margin-top: 0;
+  margin-bottom: 5px;
   color: rgb(26, 102, 224);
+}
+
+p.res-address{
+  font-weight: 550;
+  font-size: 16px;
+  margin-bottom: 30px;
 }
 
 .restaurant-index-item > div > h3:hover{
@@ -30,6 +44,10 @@ img.restaurant-thumb {
   margin-top: 0;
   text-decoration: underline;
   color: rgb(38, 91, 177);
+}
+
+.restaurant-index-item > div > span {
+  padding: 5px;
 }
 
 .restaurant-page {
