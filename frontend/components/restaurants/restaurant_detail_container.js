@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import {requestRestaurant} from '../../actions/restaurant_actions';
+import {createFavorite} from '../../actions/favorites_actions';
 import RestaurantDetail from './restaurant_detail';
 
 
@@ -8,7 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestRestaurant: id => dispatch(requestRestaurant(id))
+  requestRestaurant: id => dispatch(requestRestaurant(id)),
+  createFavorite: favorite => dispatch(createFavorite(favorite))
 });
 
 export default connect(

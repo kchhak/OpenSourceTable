@@ -3,6 +3,11 @@ import ReservationFormContainer from '../reservations/reservation_form_container
 import ReviewIndexContainer from '../reviews/review_index_container';
 
 class RestaurantDetail extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
   componentDidMount() {
     this.props.requestRestaurant(this.props.match.params.restaurantId);
   }
@@ -11,6 +16,15 @@ class RestaurantDetail extends React.Component {
     if (prevProps.match.params.restaurantId !== this.props.match.params.restaurantId) {
       this.props.requestRestaurant(this.props.match.params.restaurantId);
     }
+  }
+
+  toggleFavorite(){
+    let favorite = {
+      user_id: this.props.userId,
+      restaurant_id: this.props.restaurant_id
+    }
+    
+    this.props.createFavorite(favorite)
   }
 
   render() {

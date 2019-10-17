@@ -107,7 +107,7 @@ class UserDisplay extends React.Component {
           <ul className="user-show-nav">
             <li><Link smooth to="#reservations">Upcoming Reservations</Link></li>
             <li><Link smooth to="#dining-history">Dining History</Link></li>
-            {restForm}
+            {/* {restForm} */}
           </ul>
 
           <div className="res-res">
@@ -122,10 +122,6 @@ class UserDisplay extends React.Component {
               {this.renderPastReservations()}
             </div>
 
-            <div className="saved-restaurants">
-              <a id="restaurants"></a>
-              <h2>Saved Restaurants</h2>
-            </div>
           </div>
         </div>
       </div>

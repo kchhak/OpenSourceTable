@@ -86,6 +86,55 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/favorites_actions.js":
+/*!***********************************************!*\
+  !*** ./frontend/actions/favorites_actions.js ***!
+  \***********************************************/
+/*! exports provided: RECEIVE_FAVORITE, DELETE_FAVORITE, createFavorite, unFavorite */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FAVORITE", function() { return RECEIVE_FAVORITE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_FAVORITE", function() { return DELETE_FAVORITE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFavorite", function() { return createFavorite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unFavorite", function() { return unFavorite; });
+/* harmony import */ var _util_favorites_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/favorites_api_util */ "./frontend/util/favorites_api_util.js");
+
+var RECEIVE_FAVORITE = 'RECEIVE_FAVORITE';
+var DELETE_FAVORITE = 'DELETE_FAVORITE';
+
+var receiveFavorite = function receiveFavorite(favorite) {
+  return {
+    type: RECEIVE_FAVORITE,
+    favorite: favorite
+  };
+};
+
+var deleteFavorite = function deleteFavorite(favorite) {
+  return {
+    type: DELETE_FAVORITE,
+    favorite: favorite
+  };
+};
+
+var createFavorite = function createFavorite(favorite) {
+  return function (dispatch) {
+    return _util_favorites_api_util__WEBPACK_IMPORTED_MODULE_0__["createFavorite"](favorite).then(function (favorite) {
+      return dispatch(receiveFavorite(favorite));
+    });
+  };
+};
+var unFavorite = function unFavorite(id) {
+  return function (dispatch) {
+    return _util_favorites_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFavorite"](id).then(function (favorite) {
+      return dispatch(deleteFavorite(favorite));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -675,9 +724,7 @@ var NavBar = function NavBar(_ref) {
     to: "/users/".concat(currentUser.id)
   }, "My Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__["NavHashLink"], {
     to: "/users/".concat(currentUser.id, "/#dining-history")
-  }, "Dining History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/users/".concat(currentUser.id)
-  }, "My Saved Restaurants"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Dining History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     onClick: function onClick() {
       logout(), toggleVisible(!isVisible);
     },
@@ -1019,10 +1066,10 @@ var RestaurantDetail =
 function (_React$Component) {
   _inherits(RestaurantDetail, _React$Component);
 
-  function RestaurantDetail() {
+  function RestaurantDetail(props) {
     _classCallCheck(this, RestaurantDetail);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RestaurantDetail).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(RestaurantDetail).call(this, props));
   }
 
   _createClass(RestaurantDetail, [{
@@ -1036,6 +1083,15 @@ function (_React$Component) {
       if (prevProps.match.params.restaurantId !== this.props.match.params.restaurantId) {
         this.props.requestRestaurant(this.props.match.params.restaurantId);
       }
+    }
+  }, {
+    key: "toggleFavorite",
+    value: function toggleFavorite() {
+      var favorite = {
+        user_id: this.props.userId,
+        restaurant_id: this.props.restaurant_id
+      };
+      this.props.createFavorite(favorite);
     }
   }, {
     key: "render",
@@ -1110,7 +1166,9 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_restaurant_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/restaurant_actions */ "./frontend/actions/restaurant_actions.js");
-/* harmony import */ var _restaurant_detail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./restaurant_detail */ "./frontend/components/restaurants/restaurant_detail.jsx");
+/* harmony import */ var _actions_favorites_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/favorites_actions */ "./frontend/actions/favorites_actions.js");
+/* harmony import */ var _restaurant_detail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./restaurant_detail */ "./frontend/components/restaurants/restaurant_detail.jsx");
+
 
 
 
@@ -1125,11 +1183,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     requestRestaurant: function requestRestaurant(id) {
       return dispatch(Object(_actions_restaurant_actions__WEBPACK_IMPORTED_MODULE_1__["requestRestaurant"])(id));
+    },
+    createFavorite: function createFavorite(favorite) {
+      return dispatch(Object(_actions_favorites_actions__WEBPACK_IMPORTED_MODULE_2__["createFavorite"])(favorite));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_restaurant_detail__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_restaurant_detail__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -2320,7 +2381,7 @@ function (_React$Component) {
       }, "Upcoming Reservations")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__["HashLink"], {
         smooth: true,
         to: "#dining-history"
-      }, "Dining History")), restForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Dining History"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "res-res"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "upcoming-reservations"
@@ -2330,11 +2391,7 @@ function (_React$Component) {
         className: "past-reservations"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         id: "dining-history"
-      }, "Past Reservations"), this.renderPastReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "saved-restaurants"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        id: "restaurants"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Saved Restaurants")))));
+      }, "Past Reservations"), this.renderPastReservations()))));
     }
   }]);
 
@@ -2408,6 +2465,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _restaurants_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./restaurants_reducer */ "./frontend/reducers/restaurants_reducer.js");
 /* harmony import */ var _reservations_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reservations_reducer */ "./frontend/reducers/reservations_reducer.js");
 /* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
+/* harmony import */ var _favorites_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./favorites_reducer */ "./frontend/reducers/favorites_reducer.js");
+
 
 
 
@@ -2417,7 +2476,8 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   restaurants: _restaurants_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   reservations: _reservations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  favorites: _favorites_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -2449,6 +2509,43 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   review: _review_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/favorites_reducer.js":
+/*!************************************************!*\
+  !*** ./frontend/reducers/favorites_reducer.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var favoritesReducer = function favoritesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FAVORITE"]:
+      return Object.assign({}, state, _defineProperty({}, action.favorite.id, action.favorite));
+
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_FAVORITE"]:
+      var newState = Object.assign({}, state);
+      delete newState[action.favorite.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (favoritesReducer);
 
 /***/ }),
 
@@ -2867,6 +2964,35 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/favorites_api_util.js":
+/*!*********************************************!*\
+  !*** ./frontend/util/favorites_api_util.js ***!
+  \*********************************************/
+/*! exports provided: createFavorite, deleteFavorite */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFavorite", function() { return createFavorite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFavorite", function() { return deleteFavorite; });
+var createFavorite = function createFavorite(favorite) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/restaurants/".concat(favorite.restaurant_id, "/favorites"),
+    data: {
+      favorite: favorite
+    }
+  });
+};
+var deleteFavorite = function deleteFavorite(id) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/favorites/".concat(id)
+  });
+};
 
 /***/ }),
 
