@@ -15,8 +15,10 @@ class ReviewIndex extends React.Component {
 
     return (
       <div className="review-list">
-        <h2> What People Are Saying </h2>
+
+        <h2> What {reviews.length} People Are Saying </h2>
         <ul>
+          
           {reviews.map(review => (
             <ReviewIndexItem
               key={review.id}

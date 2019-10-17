@@ -21,6 +21,11 @@ class ReservationForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    if (!this.props.userId){
+      this.props.openModal();
+      return;
+    }
+
     let reservation = Object.assign({}, this.state);
     reservation.res_time = `${this.date} ${this.time}`;
 
@@ -91,9 +96,12 @@ class ReservationForm extends React.Component {
     ))
   }
 
+
   render() {
     return (
       <div className="reservation-form">
+        {this.props.errors.responseJSON}
+
         <h2>Make a reservation</h2>
         <hr />
 

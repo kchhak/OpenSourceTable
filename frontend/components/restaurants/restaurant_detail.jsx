@@ -33,28 +33,31 @@ class RestaurantDetail extends React.Component {
     }
 
     return(
-      <div className="restaurant-detail">
-        <div className="restaurant-main-info">
-          <h1>{restaurant.name}</h1>
-          <hr/>
-          <span><i className="far fa-comment-alt"></i> Reviews </span>
-          <span><i className="fas fa-money-bill"></i> {displayPrice} </span>
-          <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
-          <p>{restaurant.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque.</p>
-          <ReviewIndexContainer restaurantId={restaurant.id} />
-        </div>
-        <div className="restaurant-side-info">
-          <ReservationFormContainer restaurant={restaurant}/>
-          <ul>
-            <li><i className="fas fa-map-marker-alt"></i> <span>{restaurant.address}</span></li>
-            <li><i className="fas fa-utensils"></i> <span>{restaurant.cuisine_type}</span></li>
-            <li><i className="fas fa-concierge-bell"></i> <span>{restaurant.dining_style}</span></li>
-            <li><i className="fas fa-phone-alt"></i> <span>{restaurant.phone}</span></li>
-          </ul>
-        </div>
+      <div className="restaurant-page">
+        <img className="photo-header" src={restaurant.photoUrls[0]} />
+        <div className="restaurant-detail">
+          <div className="restaurant-main-info">
+            <h1>{restaurant.name}</h1>
+            <hr />
+            <span><i className="far fa-comment-alt"></i> Reviews </span>
+            <span><i className="fas fa-money-bill"></i> {displayPrice} </span>
+            <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
+            <p>{restaurant.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque.</p>
+            <ReviewIndexContainer restaurantId={restaurant.id} />
+          </div>
+          <div className="restaurant-side-info">
+            <ReservationFormContainer restaurant={restaurant} />
+            <ul>
+              <li><i className="fas fa-map-marker-alt"></i> <span>{restaurant.address}</span></li>
+              <li><i className="fas fa-utensils"></i> <span>{restaurant.cuisine_type}</span></li>
+              <li><i className="fas fa-concierge-bell"></i> <span>{restaurant.dining_style}</span></li>
+              <li><i className="fas fa-phone-alt"></i> <span>{restaurant.phone}</span></li>
+            </ul>
+          </div>
 
-        
+        </div>
       </div>
+
     )
   }
 

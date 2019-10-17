@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
-import {requestAllReservations} from '../../actions/reservation_actions';
-import { openModal } from '../../actions/modal_actions';
+import {requestAllReservations, cancelReservation} from '../../actions/reservation_actions';
 
 import UserDisplay from './user_display'
 
@@ -11,7 +10,7 @@ const mapStateToProps = ({ session, entities: { users, reservations } }) => ({
 
 const mapDispatchToProps = dispatch => ({
   requestAllReservations: id => dispatch(requestAllReservations(id)),
-  openModal: modal => dispatch(openModal(modal))
+  cancelReservation: resId => dispatch(cancelReservation(resId))
 });
 
 export default connect(

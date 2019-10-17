@@ -29,7 +29,8 @@ class RestaurantForm extends React.Component {
       sat_open: null,
       sat_close: null,
       sun_open: null,
-      sun_close: null
+      sun_close: null,
+      photos: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -111,6 +112,12 @@ class RestaurantForm extends React.Component {
           </div>
 
           <input type="number" value={this.state.capacity} placeholder="Capacity" onChange={this.update('capacity')}/>
+          
+          <input
+            type="file"
+            onChange={e => this.setState({ photos: e.target.files })}
+            multiple
+          />
           
           <div className="select-hours">
             <p>Hours of Operation</p>

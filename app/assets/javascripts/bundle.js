@@ -630,6 +630,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-hash-link */ "./node_modules/react-router-hash-link/lib/index.js");
+/* harmony import */ var react_router_hash_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -637,6 +639,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -670,14 +673,15 @@ var NavBar = function NavBar(_ref) {
     className: "arrow-up"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/".concat(currentUser.id)
-  }, "My Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "My Dining History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "My Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__["NavHashLink"], {
+    to: "/users/".concat(currentUser.id, "/#dining-history")
+  }, "Dining History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/".concat(currentUser.id)
   }, "My Saved Restaurants"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     onClick: function onClick() {
       logout(), toggleVisible(!isVisible);
-    }
+    },
+    href: "#"
   }, "Sign Out"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "header-nav"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -802,6 +806,12 @@ function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
+
+      if (!this.props.userId) {
+        this.props.openModal();
+        return;
+      }
+
       var reservation = Object.assign({}, this.state);
       reservation.res_time = "".concat(this.date, " ").concat(this.time);
       this.props.createReservation(reservation).then(function () {
@@ -891,7 +901,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reservation-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Make a reservation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, this.props.errors.responseJSON, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Make a reservation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Party Size", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: "party-size",
@@ -939,6 +949,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _reservation_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation_form */ "./frontend/components/reservations/reservation_form.jsx");
 /* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -956,6 +968,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReservation: function createReservation(reservation) {
       return dispatch(Object(_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__["createReservation"])(reservation));
+    },
+    openModal: function openModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('login'));
     }
   };
 };
@@ -1045,6 +1060,11 @@ function (_React$Component) {
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "restaurant-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "photo-header",
+        src: restaurant.photoUrls[0]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-main-info"
@@ -1068,7 +1088,7 @@ function (_React$Component) {
         className: "fas fa-concierge-bell"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.dining_style)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-phone-alt"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.phone)))));
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, restaurant.phone))))));
     }
   }]);
 
@@ -1235,14 +1255,69 @@ __webpack_require__.r(__webpack_exports__);
 
 var RestaurantIndexItem = function RestaurantIndexItem(_ref) {
   var restaurant = _ref.restaurant;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "restaurant-index-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/restaurants/".concat(restaurant.id)
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "restaurant-index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "restaurant-thumb",
+    src: restaurant.photoUrls[0]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.numReviews), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (RestaurantIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/reviews/rating.js":
+/*!***********************************************!*\
+  !*** ./frontend/components/reviews/rating.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function avgRating(review) {
+  var avg = (review.food + review.ambience + review.service + review.value) / 4;
+  var stars = [];
+  var filled = 0;
+
+  for (var i = 0; i < Math.floor(avg); i++) {
+    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-star"
+    }));
+    filled += 1;
+  }
+
+  if (avg % 1 >= .50) {
+    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-star-half-alt"
+    }));
+    filled += 1;
+  }
+
+  for (var _i = 0; _i < 5 - filled; _i++) {
+    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "far fa-star"
+    }));
+  }
+
+  return stars;
+}
+
+var Rating = function Rating(_ref) {
+  var review = _ref.review;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "stars"
+  }, avgRating(review));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Rating);
 
 /***/ }),
 
@@ -1301,7 +1376,6 @@ function (_React$Component) {
       value: null,
       comment: ''
     };
-    console.log(_this.state);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1472,9 +1546,7 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
-
+/* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
 
 
 
@@ -1492,14 +1564,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReview: function createReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["createReview"])(review));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -1563,7 +1632,7 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " What People Are Saying "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, reviews.map(function (review) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " What ", reviews.length, " People Are Saying "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, reviews.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: review.id,
           review: review
@@ -1624,43 +1693,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rating */ "./frontend/components/reviews/rating.js");
 
 
-function avgRating(review) {
-  var avg = (review.food + review.ambience + review.service + review.value) / 4;
-  var stars = [];
-  var filled = 0;
-
-  for (var i = 0; i < Math.floor(avg); i++) {
-    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fas fa-star"
-    }));
-    filled += 1;
-  }
-
-  if (avg % 1 >= .50) {
-    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fas fa-star-half-alt"
-    }));
-    filled += 1;
-  }
-
-  for (var _i = 0; _i < 5 - filled; _i++) {
-    stars.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-star"
-    }));
-  }
-
-  return stars;
-}
 
 var ReviewIndexItem = function ReviewIndexItem(_ref) {
   var review = _ref.review;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "review-index-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "stars"
-  }, avgRating(review)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    review: review
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "rating-details"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Food"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "rating-num"
@@ -2080,9 +2123,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _user_display__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user_display */ "./frontend/components/user/user_display.jsx");
-
+/* harmony import */ var _user_display__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_display */ "./frontend/components/user/user_display.jsx");
 
 
 
@@ -2103,13 +2144,13 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     requestAllReservations: function requestAllReservations(id) {
       return dispatch(Object(_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__["requestAllReservations"])(id));
     },
-    openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+    cancelReservation: function cancelReservation(resId) {
+      return dispatch(Object(_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__["cancelReservation"])(resId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_user_display__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_user_display__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -2125,7 +2166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _reviews_review_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reviews/review_form_container */ "./frontend/components/reviews/review_form_container.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-hash-link */ "./node_modules/react-router-hash-link/lib/index.js");
+/* harmony import */ var react_router_hash_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2169,7 +2211,6 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestAllReservations(this.props.currentUser.id);
-      this.sortReservations();
     }
   }, {
     key: "formatDate",
@@ -2181,6 +2222,8 @@ function (_React$Component) {
     value: function sortReservations() {
       var _this2 = this;
 
+      this.upcoming = [];
+      this.past = [];
       this.props.reservations.forEach(function (reservation) {
         var d = new Date(reservation.res_time);
 
@@ -2196,17 +2239,23 @@ function (_React$Component) {
     value: function renderUpcomingReservations() {
       var _this3 = this;
 
-      if (!this.upcoming) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " No Upcoming Reservations", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      if (this.upcoming.length === 0) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "no-upcoming"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Upcoming Reservations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: "#"
-        }, "Book a Table."));
+        }, "Book a Table Now!"));
       }
 
       return this.upcoming.map(function (reservation) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "reservation-block",
           key: reservation.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this3.props.cancelReservation(reservation.id);
+          }
+        }, "Cancel this reservation?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
       });
     }
   }, {
@@ -2231,6 +2280,7 @@ function (_React$Component) {
     value: function render() {
       var user = this.props.currentUser;
       var restForm = user.owner ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Submit your Restaurant") : "";
+      this.sortReservations();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-show"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2239,11 +2289,13 @@ function (_React$Component) {
         className: "user-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "user-show-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#reservations"
-      }, "Reservations")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#restaurants"
-      }, "Saved Restaurants")), restForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__["HashLink"], {
+        smooth: true,
+        to: "#reservations"
+      }, "Upcoming Reservations")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_hash_link__WEBPACK_IMPORTED_MODULE_2__["HashLink"], {
+        smooth: true,
+        to: "#dining-history"
+      }, "Dining History")), restForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "res-res"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "upcoming-reservations"
@@ -2251,7 +2303,9 @@ function (_React$Component) {
         id: "reservations"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Upcoming Reservations"), this.renderUpcomingReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "past-reservations"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Past Reservations"), this.renderPastReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        id: "dining-history"
+      }, "Past Reservations"), this.renderPastReservations()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "saved-restaurants"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         id: "restaurants"
@@ -2466,7 +2520,7 @@ var reservationsReducer = function reservationsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, action.reservations);
 
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_RESERVATION"]:
-      var newState = Object.assign({}, oldState);
+      var newState = Object.assign({}, state);
       delete newState[action.reservation.id];
       return newState;
 
@@ -39395,6 +39449,134 @@ if (true) {
 
 //# sourceMappingURL=react-router-dom.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/react-router-hash-link/lib/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-router-hash-link/lib/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.genericHashLink = genericHashLink;
+exports.HashLink = HashLink;
+exports.NavHashLink = NavHashLink;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var hashFragment = '';
+var observer = null;
+var asyncTimerId = null;
+var scrollFunction = null;
+
+function reset() {
+  hashFragment = '';
+  if (observer !== null) observer.disconnect();
+  if (asyncTimerId !== null) {
+    window.clearTimeout(asyncTimerId);
+    asyncTimerId = null;
+  }
+}
+
+function getElAndScroll() {
+  var element = document.getElementById(hashFragment);
+  if (element !== null) {
+    scrollFunction(element);
+    reset();
+    return true;
+  }
+  return false;
+}
+
+function hashLinkScroll() {
+  // Push onto callback queue so it runs after the DOM is updated
+  window.setTimeout(function () {
+    if (getElAndScroll() === false) {
+      if (observer === null) {
+        observer = new MutationObserver(getElAndScroll);
+      }
+      observer.observe(document, {
+        attributes: true,
+        childList: true,
+        subtree: true
+      });
+      // if the element doesn't show up in 10 seconds, stop checking
+      asyncTimerId = window.setTimeout(function () {
+        reset();
+      }, 10000);
+    }
+  }, 0);
+}
+
+function genericHashLink(props, As) {
+  function handleClick(e) {
+    reset();
+    if (props.onClick) props.onClick(e);
+    if (typeof props.to === 'string') {
+      hashFragment = props.to.split('#').slice(1).join('#');
+    } else if (_typeof(props.to) === 'object' && typeof props.to.hash === 'string') {
+      hashFragment = props.to.hash.replace('#', '');
+    }
+    if (hashFragment !== '') {
+      scrollFunction = props.scroll || function (el) {
+        return props.smooth ? el.scrollIntoView({ behavior: "smooth" }) : el.scrollIntoView();
+      };
+      hashLinkScroll();
+    }
+  }
+
+  var scroll = props.scroll,
+      smooth = props.smooth,
+      filteredProps = _objectWithoutProperties(props, ['scroll', 'smooth']);
+
+  return _react2.default.createElement(
+    As,
+    _extends({}, filteredProps, { onClick: handleClick }),
+    props.children
+  );
+}
+
+function HashLink(props) {
+  return genericHashLink(props, _reactRouterDom.Link);
+}
+
+function NavHashLink(props) {
+  return genericHashLink(props, _reactRouterDom.NavLink);
+}
+
+var propTypes = {
+  onClick: _propTypes2.default.func,
+  children: _propTypes2.default.node,
+  scroll: _propTypes2.default.func,
+  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])
+};
+
+HashLink.propTypes = propTypes;
+NavHashLink.propTypes = propTypes;
 
 /***/ }),
 

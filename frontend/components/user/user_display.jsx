@@ -1,6 +1,6 @@
 import React from 'react';
 import ReviewFormContainer from '../reviews/review_form_container';
-import { openModal } from '../../actions/modal_actions';
+import { HashLink as Link } from 'react-router-hash-link';
 
 class UserDisplay extends React.Component {
   constructor(props){
@@ -13,7 +13,6 @@ class UserDisplay extends React.Component {
 
   componentDidMount(){
     this.props.requestAllReservations(this.props.currentUser.id);
-    this.sortReservations();
   }
 
   formatDate(date) {
@@ -23,6 +22,9 @@ class UserDisplay extends React.Component {
   }
 
   sortReservations() {
+    this.upcoming = [];
+    this.past = [];
+
     this.props.reservations.forEach(reservation => {
       let d = new Date(reservation.res_time);
 
@@ -35,11 +37,13 @@ class UserDisplay extends React.Component {
   }
 
   renderUpcomingReservations() {
-    if (!this.upcoming) {
+    if (this.upcoming.length === 0) {
       return (
-        <p> No Upcoming Reservations 
-          <a href="#">Book a Table.</a>
-        </p>
+        <div className="no-upcoming"> 
+          <p>No Upcoming Reservations</p>
+          <br/>
+          <a href="#">Book a Table Now!</a>
+        </div>
       )
     }
 
@@ -49,6 +53,7 @@ class UserDisplay extends React.Component {
           <li>{reservation.restaurant.name}</li>
           <li>{this.formatDate(new Date(reservation.res_time))}</li>
           <li>Table for {reservation.num_guests}</li>
+          <button onClick={() => this.props.cancelReservation(reservation.id)}>Cancel this reservation?</button>
           <hr />
         </ul>
       )
@@ -80,6 +85,7 @@ class UserDisplay extends React.Component {
   render (){
     const user = this.props.currentUser;
     const restForm = user.owner ? <li>Submit your Restaurant</li> : ""
+    this.sortReservations();
 
     return(
       <div className="user-show">
@@ -89,8 +95,8 @@ class UserDisplay extends React.Component {
 
         <div className="user-info">
           <ul className="user-show-nav">
-            <li><a href="#reservations">Reservations</a></li>
-            <li><a href="#restaurants">Saved Restaurants</a></li>
+            <li><Link smooth to="#reservations">Upcoming Reservations</Link></li>
+            <li><Link smooth to="#dining-history">Dining History</Link></li>
             {restForm}
           </ul>
 
@@ -102,7 +108,7 @@ class UserDisplay extends React.Component {
             </div>
 
             <div className="past-reservations">
-              <h2>Past Reservations</h2>
+              <h2 id="dining-history">Past Reservations</h2>
               {this.renderPastReservations()}
             </div>
 

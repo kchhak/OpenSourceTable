@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 
 
 const NavBar = ({ currentUser, logout, openModal }) => {
@@ -17,9 +18,10 @@ const NavBar = ({ currentUser, logout, openModal }) => {
           <div className={`user-nav${isVisible ? "" : "-hidden"}`}> 
             <div className="arrow-up"></div>
             <Link to={`/users/${currentUser.id}`}>My Profile</Link>
-            <a href="#">My Dining History</a>
+            <NavLink
+              to={`/users/${currentUser.id}/#dining-history`}>Dining History</NavLink>
             <Link to={`/users/${currentUser.id}`}>My Saved Restaurants</Link>
-            <a onClick={() => {logout(), toggleVisible(!isVisible)}}>Sign Out</a>
+            <a onClick={() => {logout(), toggleVisible(!isVisible)}} href="#">Sign Out</a>
           </div>
         </div>
       ) : (

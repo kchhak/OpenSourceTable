@@ -1,9 +1,57 @@
+.restaurant-list{
+  width: 60%;
+  background: white;
+  margin: 0 auto;
+}
+
+.restaurant-index-item {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  padding: 50px;
+}
+
+img.restaurant-thumb {
+  height: 200px;
+  width: 200px;
+  margin-right: 50px;
+  border-radius: 5px;
+}
+
+.restaurant-index-item > div > h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 0;
+  color: rgb(26, 102, 224);
+}
+
+.restaurant-index-item > div > h3:hover{
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 0;
+  text-decoration: underline;
+  color: rgb(38, 91, 177);
+}
+
+.restaurant-page {
+  width: 90%;
+  margin: 0 auto;
+}
+
+img.photo-header{
+  height: 350px;
+  object-fit: cover;
+}
+
 .restaurant-detail {
   font-family: Arial, Helvetica, sans-serif;
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
+  width: 75%;
+  height: auto;
   display: flex;
+  z-index: 10;
+  position: absolute;
+  background: transparent;
+  top: 350px;
+  left: 240px;
 }
 
 .restaurant-detail > .restaurant-main-info {

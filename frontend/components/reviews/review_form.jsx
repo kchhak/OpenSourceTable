@@ -14,7 +14,6 @@ class ReviewForm extends React.Component {
       value: null,
       comment: ''
     };
-    console.log(this.state);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

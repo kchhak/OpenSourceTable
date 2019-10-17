@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { createReview } from '../../actions/review_actions';
-import { closeModal } from '../../actions/modal_actions';
 import ReviewForm from './review_form';
 
 const mapStateToProps = ({ errors, session }) => ({
@@ -10,7 +9,6 @@ const mapStateToProps = ({ errors, session }) => ({
 
 const mapDispatchToProps = dispatch => ({
   createReview: review => dispatch(createReview(review)),
-  closeModal: () => dispatch(closeModal())
 });
 
 export default connect(
