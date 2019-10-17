@@ -42,7 +42,7 @@ class RestaurantDetail extends React.Component {
             <span><i className="far fa-comment-alt"></i> Reviews </span>
             <span><i className="fas fa-money-bill"></i> {displayPrice} </span>
             <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
-            <p>{restaurant.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque.</p>
+            <p>{restaurant.description}</p>
             <ReviewIndexContainer restaurantId={restaurant.id} />
           </div>
           <div className="restaurant-side-info">

@@ -53,7 +53,7 @@ class UserDisplay extends React.Component {
           <li>{reservation.restaurant.name}</li>
           <li>{this.formatDate(new Date(reservation.res_time))}</li>
           <li>Table for {reservation.num_guests}</li>
-          <button onClick={() => this.props.cancelReservation(reservation.id)}>Cancel this reservation?</button>
+          <button onClick={() => this.props.cancelReservation(reservation.id).then(window.location.reload())}>Cancel this reservation?</button>
           <hr />
         </ul>
       )

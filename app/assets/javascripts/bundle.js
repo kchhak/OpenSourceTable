@@ -1074,7 +1074,7 @@ function (_React$Component) {
         className: "fas fa-money-bill"
       }), " ", displayPrice, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-utensils"
-      }), " ", restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.description, " Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), " ", restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         restaurantId: restaurant.id
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "restaurant-side-info"
@@ -1262,7 +1262,7 @@ var RestaurantIndexItem = function RestaurantIndexItem(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "restaurant-thumb",
     src: restaurant.photoUrls[0]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.numReviews), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price))));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.cuisine_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, restaurant.price))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (RestaurantIndexItem);
@@ -2253,7 +2253,7 @@ function (_React$Component) {
           key: reservation.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, reservation.restaurant.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this3.formatDate(new Date(reservation.res_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Table for ", reservation.num_guests), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.props.cancelReservation(reservation.id);
+            return _this3.props.cancelReservation(reservation.id).then(window.location.reload());
           }
         }, "Cancel this reservation?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
       });

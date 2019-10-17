@@ -8,8 +8,6 @@ const RestaurantIndexItem = ({ restaurant }) => (
       
       <div>
         <h3>{restaurant.name}</h3>
-        <p>{restaurant.numReviews}</p>
-        {/* avgrating num-reviews */}
         <p>{restaurant.cuisine_type}</p>
         <p>{restaurant.price}</p>  
       </div>
