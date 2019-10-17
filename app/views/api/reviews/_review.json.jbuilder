@@ -1,1 +1,1 @@
-json.extract! review, :id, :user_id, :restaurant_id, :food, :ambience, :service, :value, :comment
+json.extract! review, :id, :author_id, :restaurant_id, :food, :ambience, :service, :value, :comment

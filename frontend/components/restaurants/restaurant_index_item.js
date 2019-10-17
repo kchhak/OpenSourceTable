@@ -7,9 +7,7 @@ const RestaurantIndexItem = ({ restaurant }) => (
       <h3>{restaurant.name}</h3>
       {/* avgrating num-reviews */}
       <p>{restaurant.cuisine_type}</p>
-      <span className="dot"/>
       <p>{restaurant.price}</p>
-      <span className="dot" />
     </Link>
   </li>
 );

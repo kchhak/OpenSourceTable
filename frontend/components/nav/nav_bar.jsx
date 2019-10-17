@@ -26,7 +26,6 @@ const NavBar = ({ currentUser, logout, openModal }) => {
         <div className="header-nav">
           <button className="sign-up" onClick={() => openModal('signup')}>Sign up</button>
           <button className="sign-in" onClick={() => openModal('login')}>Sign in</button>
-
         </div>
       )}
     </div>

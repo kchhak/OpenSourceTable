@@ -4,7 +4,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def index 
-    @restaurant = User.find(params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
 
     if @restaurant 
       @reviews = @restaurant.reviews

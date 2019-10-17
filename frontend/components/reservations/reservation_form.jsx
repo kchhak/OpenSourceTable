@@ -20,9 +20,10 @@ class ReservationForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     let reservation = Object.assign({}, this.state);
     reservation.res_time = `${this.date} ${this.time}`;
-    console.log(reservation);
+
     this.props.createReservation(reservation)
       .then(() => this.props.history.push(`/users/${this.props.userId}`))
   }
@@ -34,14 +35,12 @@ class ReservationForm extends React.Component {
   updateDate() {
     return e => {
       this.date = e.target.value;
-      console.log(this.date);
     } 
   }
 
   updateTime() {
     return e => {
       this.time = e.target.value;
-      console.log(this.time);
     } 
   }
 

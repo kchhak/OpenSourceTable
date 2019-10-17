@@ -1,4 +1,6 @@
 import React from 'react';
+import ReviewFormContainer from '../reviews/review_form_container';
+import { openModal } from '../../actions/modal_actions';
 
 class UserDisplay extends React.Component {
   constructor(props){
@@ -47,6 +49,7 @@ class UserDisplay extends React.Component {
           <li>{reservation.restaurant.name}</li>
           <li>{this.formatDate(new Date(reservation.res_time))}</li>
           <li>Table for {reservation.num_guests}</li>
+          <hr />
         </ul>
       )
     )
@@ -66,6 +69,8 @@ class UserDisplay extends React.Component {
             <li>{reservation.restaurant.name}</li>
             <li>{date.getUTCMonth() + 1}/{date.getUTCDate()}/{date.getUTCFullYear()} at {(date.getUTCHours() + 11) % 12 + 1}:{date.getUTCMinutes() === 0 ? "00" : "30"} {date.getUTCHours >= 12 ? "PM" : "AM"}</li>
             <li>Table for {reservation.num_guests}</li>
+            <ReviewFormContainer restaurant_id={reservation.restaurant_id}/>
+            <hr/>
           </ul>
         )
       })

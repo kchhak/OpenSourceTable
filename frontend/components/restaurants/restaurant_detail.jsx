@@ -1,5 +1,6 @@
 import React from 'react';
 import ReservationFormContainer from '../reservations/reservation_form_container';
+import ReviewIndexContainer from '../reviews/review_index_container';
 
 class RestaurantDetail extends React.Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ class RestaurantDetail extends React.Component {
           <span><i className="fas fa-money-bill"></i> {displayPrice} </span>
           <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
           <p>{restaurant.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam praesentium fugiat necessitatibus earum, ab nisi quam quia exercitationem accusamus mollitia maxime laboriosam facilis nostrum tempora ipsam numquam, aliquam itaque.</p>
+          <ReviewIndexContainer restaurantId={restaurant.id} />
         </div>
         <div className="restaurant-side-info">
           <ReservationFormContainer restaurant={restaurant}/>
@@ -50,6 +52,8 @@ class RestaurantDetail extends React.Component {
             <li><i className="fas fa-phone-alt"></i> <span>{restaurant.phone}</span></li>
           </ul>
         </div>
+
+        
       </div>
     )
   }
