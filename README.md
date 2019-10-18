@@ -1,6 +1,8 @@
 # OpenSourceTable
 
-[OpenSourceTable Live](https://opensource-table.herokuapp.com/#/)
+![ost-logo](https://github.com/kchhak/opensourceTable/blob/master/app/assets/images/logo.png?raw=true)
+
+[Live Demo](https://opensource-table.herokuapp.com/#/)
 
 OpenSourceTable is a single page web app based on OpenTable. It showcases restaurant listings with restaurant details and user reviews. OpenSourceTable allows users to create reservations and view them on their profile, along with a dining history of past reservations with the option to review the restaurants at which they have dined. 
 
@@ -64,7 +66,8 @@ I also created a util method `formatDate()` which parsed my datetime object into
 ```
   formatDate(date) {
     return (
-      `${ date.getUTCMonth() + 1 }/${date.getUTCDate()}/${ date.getUTCFullYear() } at ${(date.getUTCHours() + 11) % 12 + 1 }:${date.getUTCMinutes() === 0 ? "00" : "30"} ${ date.getUTCHours() >= 12 ? "PM" : "AM" }`
+      `${ date.getUTCMonth() + 1 }/${date.getUTCDate()}/${ date.getUTCFullYear() } at 
+      ${(date.getUTCHours() + 11) % 12 + 1 }:${date.getUTCMinutes() === 0 ? "00" : "30"} ${ date.getUTCHours() >= 12 ? "PM" : "AM" }`
     )
   }
 ```
