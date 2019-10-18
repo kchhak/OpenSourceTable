@@ -37,7 +37,7 @@ r4 = Restaurant.create(owner_id: u2.id, name: 'Stew-pendous', address: '5780 Bro
                 casseroles, topped with heaps of cheese and tons of love.", location_id: clt.id)
 r5 = Restaurant.create(owner_id: u2.id, name: 'Cake and Barrel', address: '2491 Antoinette Avenue', cuisine_type: 'Desserts', dining_style: 'Casual Elegant', phone: '523-333-3337', price: '$$$$', capacity: 10,
                 description: "Cake and Barrel offers elegance and frivolousness, paired with a wonderfully rustic quirk. We do not have a cake menu, as we believe that the best creations are what our incredible chefs are inspired to make. We do, however, offer a 
-                very large selection of both wines and whiskies that our experts have specially curated to pair with both our rich and dainty flavors. Our Premiere VIP Experience, offers relaxation, tranquility, and pure indulgence. Call today to find out more!", location_id: clt.id)
+                very large selection of both wines and whiskies that our experts have specially curated to pair with both our rich and dainty flavors. Our Premiere VIP Experience offers relaxation, tranquility, and pure indulgence. Call today to find out more!", location_id: clt.id)
                 
 file1 = File.open('app/assets/images/hotdog.jpg')
 file2 = File.open('app/assets/images/cheese.jpg')
