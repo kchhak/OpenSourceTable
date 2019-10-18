@@ -20,7 +20,6 @@ const NavBar = ({ currentUser, logout, openModal }) => {
             <Link to={`/users/${currentUser.id}`}>My Profile</Link>
             <NavLink
               to={`/users/${currentUser.id}/#dining-history`}>Dining History</NavLink>
-            {/* <Link to={`/users/${currentUser.id}`}>My Saved Restaurants</Link> */}
             <a onClick={() => {logout(), toggleVisible(!isVisible)}} href="#">Sign Out</a>
           </div>
         </div>
