@@ -15,9 +15,12 @@ OpenSourceTable is a single page web app based on OpenTable. It showcases restau
 * Nav bar features either a greeting message and user-nav, or sign in/sign up buttons depending on session state.
 * Sign out redirects to home page.
 
+![auth](https://github.com/kchhak/opensourceTable/blob/master/app/assets/images/user_auth.png?raw=true)
+
+
 ### Restaurants
 
-* Restaurant listings have quick info, while show page contains a full description and user reviews.
+* Restaurant listings have quick info, while show page contains a full restaurant description and user reviews.
 * Ratings which are broken down into four categories: food, ambience, service, and value, are averaged into an overall score and presented with dynamic star ratings.
 
 ```
@@ -38,8 +41,11 @@ OpenSourceTable is a single page web app based on OpenTable. It showcases restau
 
 * Reservations can be made from the restaurant show page and has options for party-size from 1-20, as well as a date picker, and time dropdown.
 
+![restaurant](https://github.com/kchhak/opensourceTable/blob/master/app/assets/images/restaurant.png?raw=true)
+
 
 ### Users 
+
 
 * User nav on top navigation bar and sidebar nav on user show page redirect to specific elements with smooth scroll.
 * User show page features reservations sorted into upcoming and past by comparing the reservation time and date to the current time.
@@ -63,6 +69,9 @@ OpenSourceTable is a single page web app based on OpenTable. It showcases restau
 
 * Past reservations include review form, allowing only users who have dined at a restaurant to leave reviews of it.
 
+![user](https://github.com/kchhak/opensourceTable/blob/master/app/assets/images/user.png?raw=true)
+
+***
 ## Technologies
 
 OpenSourceTable is a full stack web app that was built with Ruby on Rails, React-Redux, and PostgreSQL
@@ -74,6 +83,7 @@ OpenSourceTable is a full stack web app that was built with Ruby on Rails, React
 * Hosted on Heroku
 * Navigation to `#hash-fragment` with [ReactRouterHashLink](https://github.com/rafrex/react-router-hash-link)
 
+***
 ## Future Directions
 
 * Suggested reservations time slots on restaurant index, further validations based on business hours and restaurant capacity
