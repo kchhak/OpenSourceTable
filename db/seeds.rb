@@ -10,7 +10,7 @@ require 'open-uri'
 User.delete_all
 Location.delete_all
 Restaurant.delete_all
-Reservation.delete_all
+Review.delete_all
 
 u = User.create(first_name: 'Demo', last_name: 'User', email: 'guest@email.com', password: 'guestpass', location: 'Charlotte', owner: true)
 u2 = User.create(first_name: 'Test', last_name: 'Owner', email: 'res_owner@email.com', password: 'guestpass', location: 'Atlanta', owner: true)
@@ -24,23 +24,32 @@ r1 = Restaurant.create(owner_id: u.id, name: 'Up Dog', address: '1212 Tasty Dog 
                   description: "Up Dog started as a hole in the wall location that offered cheap, no frills hot dogs at every hour. Since its founding in 2016, Up Dog has come to enjoy immense success after being rated #1 Best Hot Dog Place With A Funny Name
                   by PunnyRestaurants Magazine. The venue is very down-tempo, honoring its grab and go roots. Indoor seating is still sparse, but the new location at 1212 Tasty Dog Drive has a large backyard-styled patio, where guests are welcome to have a hot dog,
                   have a brew, and make new friends and enemies over cornhole and various other outdoor activities.", location_id: clt.id)
-
 r2 = Restaurant.create(owner_id: u2.id, name: 'Cheesy Chance', address: '3434 Gooey Cheese Court', cuisine_type: 'Italian', dining_style: 'Casual Elegant', phone: '333-333-3333', price: '$$$', capacity: 20,
                   description: 'Cheesy Chance is a gourmet cheesery, an experience unlike any other. Opened in the Fall of 2008, Cheesy Chance has a mission to bring cheese in all its available forms to everyone. The venue boasts an elegant location with 
                   minimalist design choices and rustic elements and features a robust menu including robust cheeses, milder cheeses, and an extensive wine list. A la carte options are available, but Cheesy Chance is known for its exquisitely crafted tasting menu
                   which delivers a global experience with a six-course cheese meal. Cheesiness is next to godliness, so why not give cheese a chance?', location_id: atl.id)
-
 r3 = Restaurant.create(owner_id: u2.id, name: 'Pho-get About It', address: '5656 Broth Boulevard', cuisine_type: 'Asian', dining_style: 'Casual Dining', phone: '500-000-0009', price: '$$', capacity: 75,
                 description: "Great Pho! Fresh salads featuring papaya, pork, prawns and chicken. Spring rolls both fresh and fried. Vietnamese style iced coffee and a full range of your favourite coffees - latte, flat white and so on. 
                 Casual dining in our shady outdoor area or in the air-conditioned inside area. Please give us a try. We promise to be a delicious and memorable experience.", location_id: atl.id)
-
+r4 = Restaurant.create(owner_id: u2.id, name: 'Stew-pendous', address: '5780 Broth Boulevard', cuisine_type: 'American', dining_style: 'Casual Dining', phone: '500-000-0913', price: '$$$', capacity: 100,
+                description: "There is really no comfort food greater than a nice warm stew. Stew-pendous specializes in food that makes you want to melt in your chair and call your mom and tell her how lucky you are to have her in your life. We have a rotating
+                menu of various hot picker-uppers, such as Homemade Chili, Chicken and Dumplings, and our locally reknowned Brunswick Stew. Not a soup fan? We also feature entrees that will still get your cozy going, such as our Skillet Mac and our slow baked
+                casseroles, topped with heaps of cheese and tons of love.", location_id: clt.id)
+r5 = Restaurant.create(owner_id: u2.id, name: 'Cake and Barrel', address: '2491 Antoinette Avenue', cuisine_type: 'Desserts', dining_style: 'Casual Elegant', phone: '523-333-3337', price: '$$$$', capacity: 10,
+                description: "Cake and Barrel offers elegance and frivolousness, paired with a wonderfully rustic quirk. We do not have a cake menu, as we believe that the best creations are what our incredible chefs are inspired to make. We do, however, offer a 
+                very large selection of both wines and whiskies that our experts have specially curated to pair with both our rich and dainty flavors. Our Premiere VIP Experience, offers relaxation, tranquility, and pure indulgence. Call today to find out more!", location_id: clt.id)
+                
 file1 = File.open('app/assets/images/hotdog.jpg')
 file2 = File.open('app/assets/images/cheese.jpg')
 file3 = File.open('app/assets/images/pho.jpg')
+file4 = File.open('app/assets/images/soup.jpg')
+file5 = File.open('app/assets/images/cake.jpg')
 
 r1.photos.attach(io: file1, filename: 'hotdog.jpg')
 r2.photos.attach(io: file2, filename: 'cheese.jpg')
 r3.photos.attach(io: file3, filename: 'pho.jpg')
+r4.photos.attach(io: file4, filename: 'soup.jpg')
+r4.photos.attach(io: file5, filename: 'cake.jpg')
 
 v1 = Review.create(author_id: u2.id, restaurant_id: r1.id, food: 5, ambience: 5, service: 3, value: 5,
                   comment: "Up Dog is way more than just a place to eat. It's weird to say, but this hot dog place is THE HOTTEST social spot
@@ -60,10 +69,6 @@ v4 = Review.create(author_id: u2.id, restaurant_id: r1.id, food: 3, ambience: 3,
 
 v5 = Review.create(author_id: u2.id, restaurant_id: r1.id, food: 5, ambience: 5, service: 5, value: 5,
                   comment: "We love Up Dog! Can't wait for the summer block party!!!!!!!!!")
-
-
-
-
 
 v6 = Review.create(author_id: u2.id, restaurant_id: r2.id, food: 3, ambience: 3, service: 5, value: 1,
         comment: "Cheesy Chance is so expensive. What the heck???? It's just cheese!")
