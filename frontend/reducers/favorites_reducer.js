@@ -1,4 +1,4 @@
-import { RECEIVE_FAVORITE, DELETE_FAVORITE } from '../actions/reservation_actions';
+import { RECEIVE_FAVORITE, DELETE_FAVORITE } from '../actions/favorites_actions';
 
 const favoritesReducer = (state = {}, action) => {
   Object.freeze(state);

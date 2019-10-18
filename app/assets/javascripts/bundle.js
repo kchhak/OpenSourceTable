@@ -2521,7 +2521,7 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+/* harmony import */ var _actions_favorites_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/favorites_actions */ "./frontend/actions/favorites_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -2532,10 +2532,10 @@ var favoritesReducer = function favoritesReducer() {
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FAVORITE"]:
+    case _actions_favorites_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FAVORITE"]:
       return Object.assign({}, state, _defineProperty({}, action.favorite.id, action.favorite));
 
-    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_FAVORITE"]:
+    case _actions_favorites_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_FAVORITE"]:
       var newState = Object.assign({}, state);
       delete newState[action.favorite.id];
       return newState;
