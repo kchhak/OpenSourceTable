@@ -49,7 +49,7 @@ r1.photos.attach(io: file1, filename: 'hotdog.jpg')
 r2.photos.attach(io: file2, filename: 'cheese.jpg')
 r3.photos.attach(io: file3, filename: 'pho.jpg')
 r4.photos.attach(io: file4, filename: 'soup.jpg')
-r4.photos.attach(io: file5, filename: 'cake.jpg')
+r5.photos.attach(io: file5, filename: 'cake.jpg')
 
 v1 = Review.create(author_id: u2.id, restaurant_id: r1.id, food: 5, ambience: 5, service: 3, value: 5,
                   comment: "Up Dog is way more than just a place to eat. It's weird to say, but this hot dog place is THE HOTTEST social spot
