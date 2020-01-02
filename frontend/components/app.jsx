@@ -24,7 +24,7 @@ const App = () => (
     <Route exact path="/restaurants/:restaurantId"
       component={RestaurantDetailContainer}
       />
-    <Route path="/" component={PersonalLinks}/>
+    <Route exact path="/" component={PersonalLinks}/>
   </div>
 );
 
