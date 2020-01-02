@@ -7,6 +7,7 @@ import RestaurantIndexContainer from './restaurants/restaurant_index_container';
 import RestaurantDetailContainer from './restaurants/restaurant_detail_container';
 import UserContainer from './user/user_container';
 import Home from './home';
+import PersonalLinks from './personalLinks';
 
 const App = () => (
   <div>
@@ -22,7 +23,8 @@ const App = () => (
       component={UserContainer}/>
     <Route exact path="/restaurants/:restaurantId"
       component={RestaurantDetailContainer}
-    />
+      />
+    <Route path="/" component={PersonalLinks}/>
   </div>
 );
 

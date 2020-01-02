@@ -17,9 +17,9 @@ const NavBar = ({ currentUser, logout, openModal }) => {
           </h2>
           <div className={`user-nav${isVisible ? "" : "-hidden"}`}> 
             <div className="arrow-up"></div>
-            <Link to={`/users/${currentUser.id}`}>My Profile</Link>
+            <Link to={`/users/${currentUser.id}`} onClick={() => { toggleVisible(!isVisible) }}>My Profile</Link>
             <NavLink
-              to={`/users/${currentUser.id}/#dining-history`}>Dining History</NavLink>
+              to={`/users/${currentUser.id}/#dining-history`} onClick={() => { toggleVisible(!isVisible) }}>Dining History</NavLink>
             <a onClick={() => {logout(), toggleVisible(!isVisible)}} href="#">Sign Out</a>
           </div>
         </div>
