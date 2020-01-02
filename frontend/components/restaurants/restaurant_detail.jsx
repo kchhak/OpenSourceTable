@@ -53,7 +53,7 @@ class RestaurantDetail extends React.Component {
           <div className="restaurant-main-info">
             <h1>{restaurant.name}</h1>
             <hr />
-            <span><i className="far fa-comment-alt"></i> Reviews </span>
+            {/* <span><i className="far fa-comment-alt"></i> Reviews </span> */}
             <span><i className="fas fa-money-bill"></i> {displayPrice} </span>
             <span><i className="fas fa-utensils"></i> {restaurant.cuisine_type}</span>
             <p>{restaurant.description}</p>
